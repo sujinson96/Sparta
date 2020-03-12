@@ -1,41 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .wrap{
+        .wrap {
             width: 900px;
             height: 800px;
             margin: 0px auto 0px auto;
             padding: 30px;
         }
-        
-        </style>
+    </style>
 </head>
 <style>
-.wrap {
-    width: 900px;
-    height: 800px;
-    margin: 0px auto 0px auto;
-    padding: 30px;
-}
+    * {
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .wrap {
+        width: 900px;
+        height: 800px;
+        margin: 0px auto 30px auto;
+        padding: 30px;
+    }
+
+    .information {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .button {
+        margin-top: 230px;
+        margin-bottom: 30px;
+        text-align: center;
+
+    }
+
+    .price {
+        font-size: 15px;
+        font-style: bold;
+
+    }
 </style>
+
 <body>
+
     <div class="wrap">
-        <div class="card" >
-            <img class="card-img-top" src="https://images.samsung.com/is/image/samsung/sec-galaxy-buds-r170-sm-r170nzwakoo-frontwhite-147218120?$PD_GALLERY_JPG$" alt="Card image cap">
+        <div class="card">
+            <img class="card-img-top"
+                src="https://images.samsung.com/is/image/samsung/sec-galaxy-buds-r170-sm-r170nzwakoo-frontwhite-147218120?$PD_GALLERY_JPG$" 
+                alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">삼성 갤럭시 버즈 (White) </h5>
-              <p class="card-text">완벽히 자유로운 갤럭시 무선 이어폰 삼성 갤럭시 버즈. 작고 가벼운 슬림 디자인 & 나만의 비트를 완성하는 프리미엄 음질 & 어떠한 상황에서도 또렷하게 전달되는 목소리. 가볍고 편안하게 항상 함께하세요</p>
+                <h5 class="card-title">삼성 갤럭시 버즈 (White) <span class="price">가격: 169,000원</span> </h5>
+                <p class="card-text">완벽히 자유로운 갤럭시 무선 이어폰 삼성 갤럭시 버즈. 작고 가벼운 슬림 디자인 & 나만의 비트를 완성하는 프리미엄 음질 & 어떠한 상황에서도
+                    또렷하게 전달되는 목소리. 가볍고 편안하게 항상 함께 하세요</p>
             </div>
-          </div>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class="information">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>Choose...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주소</span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">전화번호</span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+
+
     </div>
-</div>
-    
+    <div class="button">
+        <a href="#" class="btn btn-primary"> 주문하기</a>
+    </div>
+
+
+
+
+
 </body>
+
 </html>
