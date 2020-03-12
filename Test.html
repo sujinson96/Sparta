@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+  <title>마스크판매페이지</title>
+  <style>
+    * {
+      font-family: 'Do Hyeon', sans-serif;
+    }
+
+    .mytitle {
+      color: white;
+      text-align: center;
+      background-image: url('http://www.forest.go.kr/newkfsweb/cmm/fms/FileDown.do?atchFileId=FILE_000000010008639&fileSn=0');
+      background-size: cover;
+      background-position: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+
+      /* display flex를 쓸 때엔 아래 네 줄이 항상 묶여 다닙니다. */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mytitle>h1 {
+      margin: 0 0 5px 0;
+    }
+
+    .mytitle>h5 {
+      margin: 5px 0 0 0;
+    }
+
+    .wrap {
+      width: 300px;
+      margin: 50px auto 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="mytitle">
+      <h1>로그인 페이지</h1>
+      <h5>아이디, 비밀번호를 입력해주세요</h5>
+    </div>
+    <p>
+      ID:
+      <input type="text">
+    </p>
+    <p>
+      PW:
+      <input type="password">
+    </p>
+    <button class="mybtn">로그인하기</button>
+  </div>
+</body>
+
+</html>
