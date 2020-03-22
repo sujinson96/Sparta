@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Document</title>
 
     <style>
@@ -44,6 +45,34 @@
             font-style: bold;
         }
     </style>
+    <script>
+        function popup() {
+            let name = $('#name').val();
+            if (name == "") {
+                alert("이름을 입력해주세요!");
+                $('#name').focus();
+                return;
+            };
+            let quantity = $('#inputGroupSelect01 option:selected').val();
+            if (quantity == "Choose...") {
+                alert("수량을 선택해주세요!");
+                $('#inputGroupSelect01').focus(); return;
+            };
+            let address = $('#address').val();
+            if (address == "") { alert("주소를 입력해주세요!"); $('#address').focus(); return; };
+            let phonenumber = $('#phonenumber').val();
+            if (phonenumber == "") { alert("휴대폰 번호를 입력해주세요!"); $('#phonenumber').focus(); return; };
+            let phonenumber1 = phonenumber.split("-");
+            let num = phonenumber1.join('');
+            console.log(num.length, phonenumber1.length)
+            if (num.length != 11 || phonenumber1.length != 3) {
+                alert("010-0000-0000 형태의 핸드폰 번호를 입력해주세요")
+            }; $('#phonenumber').focus(); return;
+
+        }
+
+
+    </script>
 </head>
 
 
@@ -65,7 +94,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">주문자 이름</span>
                 </div>
-                <input type="text" class="form-control" aria-describedby="basic-addon1">
+                <input type="text" id="name" class="form-control" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
@@ -86,14 +115,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">주소</span>
                 </div>
-                <input type="text" class="form-control" aria-describedby="basic-addon1">
+                <input type="text" id="address" class="form-control" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">전화번호</span>
                 </div>
-                <input type="text" class="form-control" aria-describedby="basic-addon1">
+                <input type="text" id="phonenumber" class="form-control" aria-describedby="basic-addon1">
             </div>
         </div>
 
@@ -101,7 +130,7 @@
 
     </div>
     <div class="button">
-        <a href="#" class="btn btn-primary"> 주문하기</a>
+        <a href="#" onclick=popup() class="btn btn-primary"> 주문하기</a>
     </div>
 
 </body>
