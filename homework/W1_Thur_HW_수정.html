@@ -51,13 +51,11 @@
             if (name == "") {
                 alert("이름을 입력해주세요!");
                 $('#name').focus();
-                return;
-            };
+                return; };
             let quantity = $('#inputGroupSelect01 option:selected').val();
             if (quantity == "Choose...") {
                 alert("수량을 선택해주세요!");
-                $('#inputGroupSelect01').focus(); return;
-            };
+                $('#inputGroupSelect01').focus(); return;};
             let address = $('#address').val();
             if (address == "") { alert("주소를 입력해주세요!"); $('#address').focus(); return; };
             let phonenumber = $('#phonenumber').val();
@@ -66,8 +64,8 @@
             let num = phonenumber1.join('');
             console.log(num.length, phonenumber1.length)
             if (num.length != 11 || phonenumber1.length != 3) {
-                alert("010-0000-0000 형태의 핸드폰 번호를 입력해주세요")
-            }; $('#phonenumber').focus(); return;
+                alert("010-0000-0000 형태의 핸드폰 번호를 입력해주세요"); $('#phonenumber').focus()}
+            else { alert("주문완료!") }
 
         }
 
