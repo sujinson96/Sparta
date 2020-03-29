@@ -1,0 +1,16 @@
+1) API 의 딕셔너리? 구조? 는 어떻게 불러오는지 궁금합니다
+- 서울 시 같은 경우는 크롬에서 뜰 때 구조화 되어 있었는데, 랜덤숫자 api 는 구조화 되어 있지 않아서요. 
+
+2) 고양이에서 왜 이미지의 데이터를 불러올 떄, $("#img-cat").attr("src", imgurl); 이렇게 뒷부분을 .attr ("src", imgurl) 을 쓰는 이유는 뭘까요> 
+사진을 교체하라해서 .html 인줄 알았는데, 왜 .attr인가용? .attr 과 .html 의 차이점은 뭔가용?
+
+3) API KEY: ?=검색어&apiKey=API키
+https://newsapi.org/v2/everything?q=kpop&apiKey=5d6c1a1d4c0d4de1a60bc34087bb8655
+
+4) 뉴스 코드
+
+5) 숫자를 99에서 2로바꾸면 생기는 일 
+
+<div id="1" class="2"
+$('#1').attr('class', 3);
+$('#1').html('<div>hello</di>'):

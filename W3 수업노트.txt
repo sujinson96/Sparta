@@ -1,0 +1,16 @@
+html table code
+<table> 안에
+1. <thead> 안에 
+<tr> 안에 - table row
+<th> 여러개 (세로줄)
+
+2. <tbody> 안에
+<tr> 안에 <td>
+<tr> 은 여러줄
+
+
+<ul> 순서없는 리스트 안에 
+<li> 
+
+.append -> 새롭게 추가
+.html -> 자식들을 교체 (replace)
