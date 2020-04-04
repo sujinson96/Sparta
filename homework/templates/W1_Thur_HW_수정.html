@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+
+    <style>
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .wrap {
+            width: 900px;
+            height: 800px;
+            margin: 0px auto 30px auto;
+            padding: 30px;
+        }
+
+        .information {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            margin-top: 280px;
+            margin-bottom: 30px;
+            text-align: center;
+
+        }
+
+        .purchase_table {
+
+            width: 900px;
+            margin: 30px auto 30px auto;
+            text-align: center;
+
+        }
+
+        .price {
+            font-size: 20px;
+            font-style: bold;
+
+        }
+
+        .card-title {
+            font-size: 50px;
+            font-style: bold;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#purchase_table').html('');
+            listing();
+        });
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/purchaseinfo",
+                data: {},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert(response['msg']);
+                        let list = response['buyers_info'];
+                        // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
+                        for (let i = 0; i < list.length; i++) {
+                            let item = list[i];
+                            make_table(item['name'], item['quantity'], item['address'], item['phonenumber']);
+                        };
+                    } else {
+                        alert('구매자 정보를 받아오지 못했습니다');
+                    }
+                }
+            });
+        };
+        function make_table() {
+            let temp_html =
+                         '<tr>\
+                                <td>'+ name + '</td>\
+                                <td>'+ quantity + '</td>\
+                                <td>'+ address + '</td>\
+                                <td>'+ phonenumber + '</td>\
+                            </tr>';
+            $('#purchase_table').append(temp_html);
+        };
+
+
+
+        function popup() {
+            let name = $('#name').val();
+            if (name == "") {
+                alert("이름을 입력해주세요!");
+                $('#name').focus();
+                return;
+            };
+            let quantity = $('#inputGroupSelect01 option:selected').val();
+            if (quantity == "Choose...") {
+                alert("수량을 선택해주세요!");
+                $('#inputGroupSelect01').focus(); return;
+            };
+            let address = $('#address').val();
+            if (address == "") { alert("주소를 입력해주세요!"); $('#address').focus(); return; };
+            let phonenumber = $('#phonenumber').val();
+            if (phonenumber == "") { alert("휴대폰 번호를 입력해주세요!"); $('#phonenumber').focus(); return; };
+            let phonenumber1 = phonenumber.split("-");
+            let num = phonenumber1.join('');
+            console.log(num.length, phonenumber1.length)
+            if (num.length != 11 || phonenumber1.length != 3) {
+                alert("010-0000-0000 형태의 핸드폰 번호를 입력해주세요"); $('#phonenumber').focus()
+            }
+            else {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/purchaseinfo',
+                    data: {
+                        name_give: name,
+                        quantity_give: quantity,
+                        address_give: address,
+                        phonenumber_give: phonenumber
+                    },
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            alert(response['msg']);
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        }
+
+
+
+    </script>
+</head>
+
+
+<body>
+
+    <div class="wrap">
+        <div class="card">
+            <img class="card-img-top"
+                src="https://images.samsung.com/is/image/samsung/sec-galaxy-buds-r170-sm-r170nzwakoo-frontwhite-147218120?$PD_GALLERY_JPG$"
+                alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">삼성 갤럭시 버즈 (White) <span class="price">가격: 169,000원</span> </h5>
+                <p class="card-text">완벽히 자유로운 갤럭시 무선 이어폰 삼성 갤럭시 버즈. 작고 가벼운 슬림 디자인 & 나만의 비트를 완성하는 프리미엄 음질 & 어떠한 상황에서도
+                    또렷하게 전달되는 목소리. 가볍고 편안하게 항상 함께 하세요.</p>
+            </div>
+        </div>
+        <div class="information">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+                </div>
+                <input type="text" id="name" class="form-control" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>Choose...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주소</span>
+                </div>
+                <input type="text" id="address" class="form-control" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">전화번호</span>
+                </div>
+                <input type="text" id="phonenumber" class="form-control" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+    </div>
+    <div class="button">
+        <a href="#" onclick=popup() class="btn btn-primary"> 주문하기</a>
+    </div>
+
+    <!-- 표만들기 부트스트랩 링크 https://getbootstrap.com/docs/4.4/content/tables/ -->
+    <div class="purchase_table">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">주문자 이름</th>
+                    <th scope="col">수량</th>
+                    <th scope="col">주소</th>
+                    <th scope="col">전화번호</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <td scope="col">주문자 이름</td>
+                <td scope="col">수량</td>
+                <td scope="col">주소</td>
+                <td scope="col">전화번호</td>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+</body>
+
+</html>
