@@ -34,7 +34,7 @@
 
         }
 
-        .purchase_table {
+        .table_wrap {
 
             width: 900px;
             margin: 30px auto 30px auto;
@@ -55,7 +55,6 @@
     </style>
     <script>
         $(document).ready(function () {
-            $('#purchase_table').html('');
             listing();
         });
 
@@ -79,14 +78,16 @@
                 }
             });
         };
-        function make_table() {
+        function make_table(name, quantity, address, phonenumber) {
             let temp_html =
-                         '<tr>\
-                                <td>'+ name + '</td>\
-                                <td>'+ quantity + '</td>\
-                                <td>'+ address + '</td>\
-                                <td>'+ phonenumber + '</td>\
-                            </tr>';
+            ` <tbody>
+                <td scope="col">${name}</td>
+                <td scope="col">${quantity}</td>
+                <td scope="col">${address}</td>
+                <td scope="col">${phonenumber}</td>
+
+            </tbody>`; 
+
             $('#purchase_table').append(temp_html);
         };
 
@@ -197,7 +198,7 @@
     </div>
 
     <!-- 표만들기 부트스트랩 링크 https://getbootstrap.com/docs/4.4/content/tables/ -->
-    <div class="purchase_table">
+    <div class="table_wrap" id="purchase_table">
         <table class="table table-striped">
             <thead>
                 <tr>
