@@ -31,14 +31,16 @@
             margin-top: 280px;
             margin-bottom: 30px;
             text-align: center;
+            
 
         }
 
         .table_wrap {
 
             width: 900px;
-            margin: 30px auto 30px auto;
+            margin: 0px auto 0px auto;
             text-align: center;
+
 
         }
 
@@ -52,9 +54,11 @@
             font-size: 50px;
             font-style: bold;
         }
+
     </style>
     <script>
         $(document).ready(function () {
+            $('#purchase_table').html('');
             listing();
         });
 
@@ -78,19 +82,28 @@
                 }
             });
         };
+
         function make_table(name, quantity, address, phonenumber) {
             let temp_html =
-            ` <tbody>
-                <td scope="col">${name}</td>
-                <td scope="col">${quantity}</td>
-                <td scope="col">${address}</td>
-                <td scope="col">${phonenumber}</td>
 
-            </tbody>`; 
+            '<tr>\
+                                <td>'+ name + '</td>\
+                                <td>'+ quantity + '</td>\
+                                <td>'+ address + '</td>\
+                                <td>'+ phonenumber + '</td>\
+                            </tr>';
+
+
+            // 이 밑에 코드로 썼을 땐 표 바디 모양이 이상하게 나오던데 왜 그런가용? 
+            // `<tbody>
+            //     <td scope="col">${name}</td>
+            //     <td scope="col">${quantity}</td>
+            //     <td scope="col">${address}</td>
+            //     <td scope="col">${phonenumber}</td>
+            // </tbody>`; 
 
             $('#purchase_table').append(temp_html);
         };
-
 
 
         function popup() {
@@ -198,8 +211,8 @@
     </div>
 
     <!-- 표만들기 부트스트랩 링크 https://getbootstrap.com/docs/4.4/content/tables/ -->
-    <div class="table_wrap" id="purchase_table">
-        <table class="table table-striped">
+    <div class="table_wrap" >
+        <table class="table table-striped" >
             <thead>
                 <tr>
                     <th scope="col">주문자 이름</th>
@@ -207,18 +220,16 @@
                     <th scope="col">주소</th>
                     <th scope="col">전화번호</th>
                 </tr>
-
             </thead>
-            <tbody>
-                <td scope="col">주문자 이름</td>
-                <td scope="col">수량</td>
-                <td scope="col">주소</td>
-                <td scope="col">전화번호</td>
-
+            <tbody id="purchase_table">
+                <tr> 
+                    <td scope="col">주문자 이름</td>
+                    <td scope="col">수량</td>
+                    <td scope="col">주소</td>
+                    <td scope="col">전화번호</td>
+                </tr>
             </tbody>
         </table>
-
-
     </div>
 
 </body>
