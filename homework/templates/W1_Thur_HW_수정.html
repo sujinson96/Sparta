@@ -69,7 +69,6 @@
                 data: {},
                 success: function (response) {
                     if (response['result'] == 'success') {
-                        alert(response['msg']);
                         let list = response['buyers_info'];
                         // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
                         for (let i = 0; i < list.length; i++) {
@@ -86,21 +85,21 @@
         function make_table(name, quantity, address, phonenumber) {
             let temp_html =
 
-            '<tr>\
-                                <td>'+ name + '</td>\
-                                <td>'+ quantity + '</td>\
-                                <td>'+ address + '</td>\
-                                <td>'+ phonenumber + '</td>\
-                            </tr>';
+            // '<tr>\
+            //                     <td>'+ name + '</td>\
+            //                     <td>'+ quantity + '</td>\
+            //                     <td>'+ address + '</td>\
+            //                     <td>'+ phonenumber + '</td>\
+            //                 </tr>';
 
 
             // 이 밑에 코드로 썼을 땐 표 바디 모양이 이상하게 나오던데 왜 그런가용? 
-            // `<tbody>
-            //     <td scope="col">${name}</td>
-            //     <td scope="col">${quantity}</td>
-            //     <td scope="col">${address}</td>
-            //     <td scope="col">${phonenumber}</td>
-            // </tbody>`; 
+            `<tr>
+                <td scope="col">${name}</td>
+                <td scope="col">${quantity}</td>
+                <td scope="col">${address}</td>
+                <td scope="col">${phonenumber}</td>
+            </tr>`; 
 
             $('#purchase_table').append(temp_html);
         };

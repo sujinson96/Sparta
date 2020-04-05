@@ -25,12 +25,12 @@ def write_info():
 
     db.purchaseinfo.insert_one(purchaseinfo)
 
-    return jsonify({'result': 'success', 'msg': '구매자 정보가 성공적으로 작성되었습니다.'})
+    return jsonify({'result': 'success', 'msg': '저장완료!'})
 
 @app.route('/purchaseinfo')
 def find_info():
     buyers = list(db.purchaseinfo.find({}, {'_id':0}))
-    return jsonify({'result': 'success', 'msg': '주문완료!', 'buyers_info': buyers})
+    return jsonify({'result': 'success', 'buyers_info': buyers})
 
 
 
