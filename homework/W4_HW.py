@@ -19,13 +19,15 @@ def write_info():
     quantity_receive = request.form['quantity_give']
     address_receive = request.form['address_give']
     phonenumber_receive = request.form['phonenumber_give']
+    price_receive = request.form ['price_give']
 
     purchaseinfo = {'name': name_receive, 'quantity': quantity_receive, 'address': address_receive,
-                    'phonenumber': phonenumber_receive}
+                    'phonenumber': phonenumber_receive, 'price': price_receive}
 
     db.purchaseinfo.insert_one(purchaseinfo)
 
     return jsonify({'result': 'success', 'msg': '저장완료!'})
+
 
 @app.route('/purchaseinfo')
 def find_info():

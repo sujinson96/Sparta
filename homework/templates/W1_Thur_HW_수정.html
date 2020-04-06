@@ -62,49 +62,6 @@
             listing();
         });
 
-        function listing() {
-            $.ajax({
-                type: "GET",
-                url: "/purchaseinfo",
-                data: {},
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        let list = response['buyers_info'];
-                        // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
-                        for (let i = 0; i < list.length; i++) {
-                            let item = list[i];
-                            make_table(item['name'], item['quantity'], item['address'], item['phonenumber']);
-                        };
-                    } else {
-                        alert('구매자 정보를 받아오지 못했습니다');
-                    }
-                }
-            });
-        };
-
-        function make_table(name, quantity, address, phonenumber) {
-            let temp_html =
-
-            // '<tr>\
-            //                     <td>'+ name + '</td>\
-            //                     <td>'+ quantity + '</td>\
-            //                     <td>'+ address + '</td>\
-            //                     <td>'+ phonenumber + '</td>\
-            //                 </tr>';
-
-
-            // 이 밑에 코드로 썼을 땐 표 바디 모양이 이상하게 나오던데 왜 그런가용? 
-            `<tr>
-                <td scope="col">${name}</td>
-                <td scope="col">${quantity}</td>
-                <td scope="col">${address}</td>
-                <td scope="col">${phonenumber}</td>
-            </tr>`; 
-
-            $('#purchase_table').append(temp_html);
-        };
-
-
         function popup() {
             let name = $('#name').val();
             if (name == "") {
@@ -117,6 +74,8 @@
                 alert("수량을 선택해주세요!");
                 $('#inputGroupSelect01').focus(); return;
             };
+            let totalprice = quantity * 169000;
+            let price = totalprice + "원"
             let address = $('#address').val();
             if (address == "") { alert("주소를 입력해주세요!"); $('#address').focus(); return; };
             let phonenumber = $('#phonenumber').val();
@@ -136,7 +95,8 @@
                         name_give: name,
                         quantity_give: quantity,
                         address_give: address,
-                        phonenumber_give: phonenumber
+                        phonenumber_give: phonenumber,
+                        price_give: price
                     },
                     success: function (response) {
                         if (response['result'] == 'success') {
@@ -146,7 +106,53 @@
                     }
                 })
             }
-        }
+        };
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/purchaseinfo",
+                data: {},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        let list = response['buyers_info'];
+                        // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
+                        for (let i = 0; i < list.length; i++) {
+                            let item = list[i];
+                            make_table(item['name'], item['quantity'], item['address'], item['phonenumber'], item['price']);
+                        };
+                    } else {
+                        alert('구매자 정보를 받아오지 못했습니다');
+                    }
+                }
+            });
+        };
+
+        function make_table(name, quantity, address, phonenumber, price) {
+            let temp_html =
+
+            // '<tr>\
+            //                     <td>'+ name + '</td>\
+            //                     <td>'+ quantity + '</td>\
+            //                     <td>'+ address + '</td>\
+            //                     <td>'+ phonenumber + '</td>\
+            //                 </tr>';
+
+
+            // 이 밑에 코드로 썼을 땐 표 바디 모양이 이상하게 나오던데 왜 그런가용? 
+            `<tr>
+                <td scope="col">${name}</td>
+                <td scope="col">${quantity}</td>
+                <td scope="col">${address}</td>
+                <td scope="col">${phonenumber}</td>
+                <td scope="col">${price}</td>
+            </tr>`; 
+
+            $('#purchase_table').append(temp_html);
+        };
+
+
+        
 
 
 
@@ -218,6 +224,8 @@
                     <th scope="col">수량</th>
                     <th scope="col">주소</th>
                     <th scope="col">전화번호</th>
+                    <th scope="col">주문 총액</th>
+
                 </tr>
             </thead>
             <tbody id="purchase_table">
@@ -226,6 +234,7 @@
                     <td scope="col">수량</td>
                     <td scope="col">주소</td>
                     <td scope="col">전화번호</td>
+                    <td scope="col">주문 총액</td>
                 </tr>
             </tbody>
         </table>
